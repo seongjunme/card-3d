@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { useRef, useEffect, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import { switchCard } from "../../animation/card";
+import Card from "./Card";
 
 const Cards = ({ selectedCard, onSwitchComplete }) => {
   const [mainCard, setMainCard] = useState(selectedCard);
@@ -42,36 +43,19 @@ const Cards = ({ selectedCard, onSwitchComplete }) => {
 
   return (
     <group onPointerDown={() => (isClicking.current = true)}>
-      <group ref={(node) => (cardsRef.current.student = node)}>
-        <mesh>
-          <boxGeometry args={[1 * 2, 1.58 * 2, 0.005, 100, 100]} />
-          <meshStandardMaterial color="blue" />
-        </mesh>
-        <mesh position={[0, 0, -0.006]}>
-          <boxGeometry args={[1 * 2, 1.58 * 2, 0.005, 100, 100]} />
-          <meshStandardMaterial color="red" side={THREE.BackSide} />
-        </mesh>
-      </group>
-      <group ref={(node) => (cardsRef.current.zikzang = node)} scale={[0.2, 0.2, 0.2]} position={[2, 1.5, -0.5]}>
-        <mesh>
-          <boxGeometry args={[1 * 2, 1.58 * 2, 0.005, 100, 100]} />
-          <meshStandardMaterial color="green" />
-        </mesh>
-        <mesh position={[0, 0, -0.006]}>
-          <boxGeometry args={[1 * 2, 1.58 * 2, 0.005, 100, 100]} />
-          <meshStandardMaterial color="yellow" side={THREE.BackSide} />
-        </mesh>
-      </group>
-      <group ref={(node) => (cardsRef.current.hrdk = node)} scale={[0.2, 0.2, 0.2]} position={[2, 0.5, -0.5]}>
-        <mesh>
-          <boxGeometry args={[1 * 2, 1.58 * 2, 0.005, 100, 100]} />
-          <meshStandardMaterial color="mediumpurple" />
-        </mesh>
-        <mesh position={[0, 0, -0.006]}>
-          <boxGeometry args={[1 * 2, 1.58 * 2, 0.005, 100, 100]} />
-          <meshStandardMaterial color="orange" side={THREE.BackSide} />
-        </mesh>
-      </group>
+      <Card color={["blue", "red"]} ref={(node) => (cardsRef.current.student = node)} />
+      <Card
+        color={["green", "yellow"]}
+        ref={(node) => (cardsRef.current.zikzang = node)}
+        scale={[0.2, 0.2, 0.2]}
+        position={[2, 1.5, -0.5]}
+      />
+      <Card
+        color={["purple", "yellow"]}
+        ref={(node) => (cardsRef.current.hrdk = node)}
+        scale={[0.2, 0.2, 0.2]}
+        position={[2, 0.5, -0.5]}
+      />
     </group>
   );
 };
