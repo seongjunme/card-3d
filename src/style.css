@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: #1e1a20;
+}
+
+.threejs {
+  outline: none;
+}
+
+.section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  font-family: "Cabin", sans-serif;
+  color: #ffeded;
+  text-transform: uppercase;
+  font-size: 7vmin;
+  padding-left: 10%;
+  padding-right: 10%;
+
+  p {
+    font-size: 2vmin;
+    margin-top: 2vmin;
+  }
+}
+
+.description {
+  margin-top: 10%;
+}
+
+.margin-top {
+  margin-top: 8%;
+}
+
+.flex-start {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.badges {
+  min-width: 480px;
+}
+
+.badge {
+  padding: 0.5vmin 1vmin;
+  background: #ffeded;
+  color: #1e1a20;
+  font-size: 2vmin;
+  text-transform: none;
+}
+
+.badge:checked {
+  background: blue;
+}
+
+.active {
+  background: blue;
+  color: #ffeded;
+}

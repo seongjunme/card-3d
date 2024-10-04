@@ -1,0 +1,24 @@
+{
+  "name": "digital-card-3d",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.3.3",
+    "vite-plugin-restart": "^0.4.1"
+  },
+  "dependencies": {
+    "@react-three/fiber": "^8.17.7",
+    "classnames": "^2.5.1",
+    "gsap": "^3.12.5",
+    "lil-gui": "^0.19.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "three": "^0.166.1"
+  }
+}
