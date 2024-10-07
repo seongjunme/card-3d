@@ -4,7 +4,7 @@
 }
 
 html {
-  background: #1e1a20;
+  background: #ffffff;
 }
 
 .threejs {
@@ -18,14 +18,14 @@ html {
   height: 100vh;
   position: relative;
   font-family: "Cabin", sans-serif;
-  color: #ffeded;
+  color: #191f28;
   text-transform: uppercase;
-  font-size: 7vmin;
+  font-size: 10vmin;
   padding-left: 10%;
   padding-right: 10%;
 
   p {
-    font-size: 2vmin;
+    font-size: 3vmin;
     margin-top: 2vmin;
   }
 }
@@ -49,13 +49,18 @@ html {
   width: 100%;
 }
 
+.center {
+  display: flex;
+  justify-content: center;
+}
+
 .badges {
   min-width: 480px;
 }
 
 .badge {
   padding: 0.5vmin 1vmin;
-  background: #ffeded;
+  background: #4e5968;
   color: #1e1a20;
   font-size: 2vmin;
   text-transform: none;
@@ -67,5 +72,39 @@ html {
 
 .active {
   background: blue;
-  color: #ffeded;
+  color: #4e5968;
+}
+
+.color-button {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.color-button:not(:first-child) {
+  margin-left: 16px;
+}
+
+.selected::after {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  display: flex;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgb(49, 130, 246);
+  box-sizing: border-box;
 }

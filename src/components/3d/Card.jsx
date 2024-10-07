@@ -1,25 +1,30 @@
-import { forwardRef } from "react";
+import { forwardRef, useRef } from "react";
 import * as THREE from "three";
 
-const cardRatio = {
-  width: 1,
-  height: 1.58,
+const card = {
+  width: 10,
+  height: 15.8,
+  radius: 0.5,
 };
 
-const cardScale = 2;
+const shape = new THREE.Shape();
+const x = card.width / 2 - card.radius;
+const y = card.height / 2 - card.radius;
+shape
+  .absarc(x, y, card.radius, Math.PI / 2, 0, true)
+  .lineTo(x + card.radius, -y)
+  .absarc(x, -y, card.radius, 0, -Math.PI / 2, true)
+  .lineTo(-x, -(y + card.radius))
+  .absarc(-x, -y, card.radius, -Math.PI / 2, Math.PI, true)
+  .lineTo(-(x + card.radius), y, card.radius, Math.PI, Math.PI / 2, true)
+  .absarc(-x, y, card.radius, Math.PI, Math.PI / 2, true);
 
-const Card = forwardRef(({ scale, position, color }, ref) => {
+const Card = forwardRef(({ color }, ref) => {
   return (
-    <group ref={ref} scale={scale} position={position}>
-      <mesh>
-        <boxGeometry args={[cardRatio.width * cardScale, cardRatio.height * cardScale, 0.005, 100, 100]} />
-        <meshStandardMaterial color={color[0]} />
-      </mesh>
-      <mesh position={[0, 0, -0.006]}>
-        <boxGeometry args={[cardRatio.width * cardScale, cardRatio.height * cardScale, 0.005, 100, 100]} />
-        <meshStandardMaterial color={color[1]} side={THREE.BackSide} />
-      </mesh>
-    </group>
+    <mesh ref={ref} rotation={[0, 0, Math.PI * 0.05]}>
+      <extrudeGeometry args={[shape, { depth: 0.01, bevelThickness: 0.1 }]} />
+      <meshStandardMaterial color={color} roughness={0.5} metalness={0.5} side={THREE.DoubleSide} />
+    </mesh>
   );
 });
 

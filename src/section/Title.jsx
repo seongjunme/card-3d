@@ -1,7 +1,7 @@
 const Title = () => {
   return (
     <section className="section">
-      <h1>Digital Card</h1>
+      <h1>DIGITAL CARD</h1>
     </section>
   );
 };
