@@ -1,17 +1,11 @@
 import { Canvas as CVS } from "@react-three/fiber";
 import { useLayoutEffect, useRef } from "react";
-import { createContext } from "react";
-
-export const CanvasContext = createContext({
-  canvasRef: { current: null },
-});
 
 const Canvas = ({ children }) => {
   const canvasRef = useRef();
 
   useLayoutEffect(() => {
     const section = document.querySelector(".section");
-    console.log(section.clientWidth, window.innerWidth);
     canvasRef.current.width = section.clientWidth;
     canvasRef.current.height = section.clientHeight;
   }, []);

@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { gsap } from "gsap";
-import { useFrame, useThree } from "@react-three/fiber";
+import { useFrame } from "@react-three/fiber";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,8 +33,6 @@ const Card = ({ color }) => {
     x: 0,
     y: 0,
   });
-
-  const { camera } = useThree();
 
   useEffect(() => {
     gsap.to(cardRef.current.rotation, { y: -Math.PI * 4, duration: 2.5, ease: "back.out(2.5)" });
