@@ -5,6 +5,7 @@
 
 html {
   background: #ffffff;
+  user-select: none;
 }
 
 .threejs {
@@ -57,27 +58,6 @@ html {
   justify-content: center;
 }
 
-.badges {
-  min-width: 480px;
-}
-
-.badge {
-  padding: 0.5vmin 1vmin;
-  background: #4e5968;
-  color: #1e1a20;
-  font-size: 2vmin;
-  text-transform: none;
-}
-
-.badge:checked {
-  background: blue;
-}
-
-.active {
-  background: blue;
-  color: #4e5968;
-}
-
 .color-button {
   position: relative;
   width: 32px;
@@ -94,7 +74,7 @@ html {
   margin-left: 16px;
 }
 
-.selected::after {
+/* .selected::after {
   content: "";
   position: absolute;
   top: -8px;
@@ -110,7 +90,7 @@ html {
   align-items: center;
   background-color: rgb(49, 130, 246);
   box-sizing: border-box;
-}
+} */
 
 .z9999 {
   z-index: 9999;

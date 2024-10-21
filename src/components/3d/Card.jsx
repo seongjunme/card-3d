@@ -50,7 +50,7 @@ const Card = ({ color }) => {
       const containerMatrix = container.getBoundingClientRect();
       const containerCenterX = (containerMatrix.left + containerMatrix.right) / 2;
       const canvasCenterX = window.innerWidth / 2;
-      const cardPositionX = (containerCenterX - canvasCenterX) / 20;
+      const cardPositionX = (containerCenterX - canvasCenterX) / 22;
 
       gsap
         .timeline({
@@ -58,13 +58,12 @@ const Card = ({ color }) => {
             trigger: section,
             start: "top top",
             scrub: true,
-            markers: true,
             snap: 1,
           },
         })
         .to(cardRef.current.position, {
           x: cardPositionX,
-          z: -12,
+          z: -10,
         });
     });
   }, []);
@@ -95,6 +94,13 @@ const Card = ({ color }) => {
   };
 
   const onMouseUp = () => {
+    if (mouseRef.current.isClicking) {
+      gsap.to(cardRef.current.rotation, {
+        x: card.rotation[0],
+        y: card.rotation[1],
+        z: card.rotation[2],
+      });
+    }
     mouseRef.current.isClicking = false;
   };
 
