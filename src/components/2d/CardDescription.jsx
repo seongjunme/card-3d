@@ -1,6 +1,6 @@
 const CardDescription = ({ title, description }) => {
   return (
-    <div className="margin-top z9999">
+    <div className="z9999">
       <div className="description">
         <h5>{title}</h5>
         <p>{description}</p>
