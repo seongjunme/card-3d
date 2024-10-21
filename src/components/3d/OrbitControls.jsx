@@ -1,5 +1,5 @@
 import { extend, useFrame, useThree } from "@react-three/fiber";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { PerspectiveCamera } from "three";
 import { OrbitControls as OControls } from "three/examples/jsm/controls/OrbitControls.js";
 extend({ OrbitControls: OControls });
@@ -11,6 +11,13 @@ const OrbitControls = () => {
   useFrame(() => {
     controls.current?.update();
   });
+
+  // useEffect(() => {
+  //   window.addEventListener("resize", () => {
+  //     camera.aspect = window.innerWidth / window.innerHeight;
+  //     camera.updateProjectionMatrix();
+  //   });
+  // }, []);
 
   return (
     <orbitControls

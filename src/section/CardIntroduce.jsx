@@ -1,17 +1,7 @@
-import { useState, useRef, useEffect } from "react";
-import Canvas from "../components/3d/Canvas";
-import OrbitControls from "../components/3d/OrbitControls";
-import Light from "../components/3d/Light";
-import Cards from "../components/3d/Cards";
 import ColorButton from "../components/2d/ColorButton";
 import { COLORS } from "../constants/color";
-import gsap from "gsap";
-import Card from "../components/3d/Card";
 
-const CardIntroduce = () => {
-  const [cardColor, setCardColor] = useState(COLORS[0]);
-  const cardRef = useRef();
-
+const CardIntroduce = ({ cardColor, setCardColor }) => {
   const introduce = {
     student: {
       title: "Student Card",
@@ -31,48 +21,37 @@ const CardIntroduce = () => {
     },
   };
 
-  useEffect(() => {
-    const intersectionObserver = new IntersectionObserver(function (entries) {
-      if (entries[0].intersectionRatio <= 0) return;
-
-      gsap.to(cardRef.current.rotation, { y: -Math.PI * 4, duration: 2.5, ease: "back.out(2.5)" });
-    });
-    // 주시 시작
-    intersectionObserver.observe(document.querySelector("canvas"));
-
-    return () => {
-      intersectionObserver.unobserve(document.querySelector("canvas"));
-    };
-  }, []);
-
   return (
-    <section className="section">
-      <div className="space-between">
-        <div className="margin-top">
-          <div className="description">
-            <h5>{introduce.student.title}</h5>
-            <p>{introduce.student.description}</p>
+    <>
+      {Object.entries(introduce).map(([type, { title, description }], index) => (
+        <section className="section">
+          <div className="space-between" style={{ height: "500px" }}>
+            <div className="margin-top z9999">
+              <div className="description">
+                <h5>{title}</h5>
+                <p>{description}</p>
+              </div>
+            </div>
+
+            <div className="card-section" style={{ width: "300px", position: "relative" }}>
+              <div
+                className="color-button-group center"
+                style={{ position: "absolute", bottom: "-15px", left: "12.5%" }}
+              >
+                {COLORS.map((color) => (
+                  <ColorButton
+                    key={color}
+                    selected={cardColor === color}
+                    color={color}
+                    onClick={() => setCardColor(color)}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-        <div>
-          <Canvas>
-            <Card ref={cardRef} color={cardColor} />
-            <OrbitControls />
-            <Light />
-          </Canvas>
-          <div className="center">
-            {COLORS.map((color) => (
-              <ColorButton
-                key={color}
-                selected={cardColor === color}
-                color={color}
-                onClick={() => setCardColor(color)}
-              />
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
+      ))}
+    </>
   );
 };
 export default CardIntroduce;
