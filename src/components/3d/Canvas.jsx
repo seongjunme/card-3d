@@ -10,8 +10,10 @@ const Canvas = ({ children }) => {
   const canvasRef = useRef();
 
   useLayoutEffect(() => {
-    canvasRef.current.width = window.innerWidth;
-    canvasRef.current.height = window.innerHeight;
+    const section = document.querySelector(".section");
+    console.log(section.clientWidth, window.innerWidth);
+    canvasRef.current.width = section.clientWidth;
+    canvasRef.current.height = section.clientHeight;
   }, []);
 
   return (
@@ -21,8 +23,8 @@ const Canvas = ({ children }) => {
       id="threejs"
       className="threejs"
       gl={{ alpha: true, antialias: true }}
-      perspective
-      camera={{ position: [0, 0, 25], width: 10 }}
+      camera={{ position: [0, 0, 25] }}
+      pixelratio={Math.min(window.devicePixelRatio, 2)}
     >
       {children}
     </CVS>

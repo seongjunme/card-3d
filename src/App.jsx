@@ -1,7 +1,6 @@
 import Title from "./section/Title";
 import CardIntroduce from "./section/CardIntroduce";
 import Canvas from "./components/3d/Canvas";
-import OrbitControls from "./components/3d/OrbitControls";
 import Light from "./components/3d/Light";
 import Card from "./components/3d/Card";
 import { COLORS } from "./constants/color";
@@ -14,7 +13,6 @@ const App = () => {
     <>
       <Canvas>
         <Card color={cardColor} />
-        {/* <OrbitControls /> */}
         <Light />
       </Canvas>
       <Title />

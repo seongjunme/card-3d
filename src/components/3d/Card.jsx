@@ -34,34 +34,48 @@ const Card = ({ color }) => {
     y: 0,
   });
 
-  const { raycaster, scene } = useThree();
+  const { camera } = useThree();
 
   useEffect(() => {
     gsap.to(cardRef.current.rotation, { y: -Math.PI * 4, duration: 2.5, ease: "back.out(2.5)" });
 
-    const colorButtons = document.querySelectorAll(".color-button-group");
+    const cardContainers = document.querySelectorAll(".card-container");
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#root",
-        start: "top top",
-        markers: true,
-        scrub: true,
-      },
-    });
+    const sections = document.querySelectorAll(".section");
 
-    tl.to(cardRef.current.position, {
-      x: 16.2,
-      z: -12,
-    });
+    sections.forEach((section, i) => {
+      if (i >= cardContainers.length) {
+        return;
+      }
 
-    tl.to(cardRef.current.position, {
-      x: -16.2,
-      z: -12,
+      const container = cardContainers[i];
+      const containerMatrix = container.getBoundingClientRect();
+      const containerCenterX = (containerMatrix.left + containerMatrix.right) / 2;
+      const canvasCenterX = window.innerWidth / 2;
+      const cardPositionX = (containerCenterX - canvasCenterX) / 20;
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: section,
+            start: "top top",
+            scrub: true,
+            markers: true,
+            snap: 1,
+          },
+        })
+        .to(cardRef.current.position, {
+          x: cardPositionX,
+          z: -12,
+        });
     });
   }, []);
 
   const onMouseDown = (e) => {
+    if (!e.target.classList.contains("card-container")) {
+      return;
+    }
+
     mouseRef.current.isClicking = true;
     mouseRef.current.x = e.clientX;
     mouseRef.current.y = e.clientY;
@@ -87,13 +101,12 @@ const Card = ({ color }) => {
   };
 
   useEffect(() => {
-    const canvas = document.getElementById("threejs");
-    canvas.addEventListener("mousedown", onMouseDown);
+    window.addEventListener("mousedown", onMouseDown);
     window.addEventListener("mousemove", onMouseMove);
     window.addEventListener("mouseup", onMouseUp);
 
     return () => {
-      canvas.removeEventListener("mousedown", onMouseDown);
+      window.removeEventListener("mousedown", onMouseDown);
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseup", onMouseUp);
     };
@@ -109,7 +122,7 @@ const Card = ({ color }) => {
 
   return (
     <>
-      <mesh ref={cardRef}>
+      <mesh ref={cardRef} rotation={card.rotation}>
         <extrudeGeometry args={[shape, { depth: 0.01, bevelThickness: 0.1 }]} />
         <meshStandardMaterial color={color} roughness={0.5} metalness={0.7} side={THREE.DoubleSide} />
       </mesh>

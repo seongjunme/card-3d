@@ -1,5 +1,6 @@
-import ColorButton from "../components/2d/ColorButton";
-import { COLORS } from "../constants/color";
+import CardDescription from "../components/2d/CardDescription";
+import Section from "../components/2d/Section";
+import CardContainer from "../components/2d/CardContainer";
 
 const CardIntroduce = ({ cardColor, setCardColor }) => {
   const introduce = {
@@ -15,42 +16,22 @@ const CardIntroduce = ({ cardColor, setCardColor }) => {
       title: "HRDK Card",
       description: "HRDK Card is very cool.",
     },
-    mycar: {
-      title: "MYCAR Card",
-      description: "MYCAR Card is so excited.",
-    },
   };
 
   return (
     <>
-      {Object.entries(introduce).map(([type, { title, description }], index) => (
-        <section className="section">
-          <div className="space-between" style={{ height: "500px" }}>
-            <div className="margin-top z9999">
-              <div className="description">
-                <h5>{title}</h5>
-                <p>{description}</p>
-              </div>
-            </div>
-
-            <div className="card-section" style={{ width: "300px", position: "relative" }}>
-              <div
-                className="color-button-group center"
-                style={{ position: "absolute", bottom: "-15px", left: "12.5%" }}
-              >
-                {COLORS.map((color) => (
-                  <ColorButton
-                    key={color}
-                    selected={cardColor === color}
-                    color={color}
-                    onClick={() => setCardColor(color)}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      ))}
+      <Section>
+        <CardDescription title={introduce.student.title} description={introduce.student.description} />
+        <CardContainer cardColor={cardColor} setCardColor={setCardColor} />
+      </Section>
+      <Section>
+        <CardContainer cardColor={cardColor} setCardColor={setCardColor} />
+        <CardDescription title={introduce.zikzang.title} description={introduce.zikzang.description} />
+      </Section>
+      <Section>
+        <CardDescription title={introduce.hrdk.title} description={introduce.hrdk.description} />
+        <CardContainer cardColor={cardColor} setCardColor={setCardColor} />
+      </Section>
     </>
   );
 };
