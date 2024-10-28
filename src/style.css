@@ -35,7 +35,11 @@ html {
 }
 
 .description {
-  margin-top: 20%;
+  /* margin-top: 30%; */
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .margin-top {

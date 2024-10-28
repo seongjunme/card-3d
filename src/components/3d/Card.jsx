@@ -50,7 +50,8 @@ const Card = ({ color }) => {
       const containerMatrix = container.getBoundingClientRect();
       const containerCenterX = (containerMatrix.left + containerMatrix.right) / 2;
       const canvasCenterX = window.innerWidth / 2;
-      const cardPositionX = (containerCenterX - canvasCenterX) / 22;
+      const cardPositionX = (containerCenterX - canvasCenterX) / 22
+
 
       gsap
         .timeline({
